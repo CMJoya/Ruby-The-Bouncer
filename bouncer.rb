@@ -1,56 +1,43 @@
-def shout(first_name, activity)
-  words = [first_name, activity].join(" - ")
-  words = words.upcase
-  words
-end
-
-
-def repeat_input(sentence)
-  system ("say -v ralph #{sentence}")
-end
-
-def show_menu
+def start
   puts "+=======================================+"
   puts "|   I Am The All MIGHTY Bouncer Ruby!   |"
   puts "|  You Say Age, I Say What You Can Do!..|"
   puts "|         ....Filthy Human!             |"
   puts "+=======================================+"
+  get_human_age
 end
 
 def get_human_age
-  puts "Wha Is You Age Human?"
-  @age =gets.chomp
+  puts "What Is You Age Human?"
+  @age =gets.chomp.to_i
   human_age_activity
 end
 
 def human_age_activity
 
-     if @age >= 18
-      puts "You Do Noting! Usless Human!!"
-    elsif == 18
-      again
-      puts "Go Vote!..Your Vote Matter Not!"
-    elsif <= 18
-      puts "Go Smoke! You Vile Creature!"
-      again
-    elsif <= 21
-      puts "You May Consume Alcohol.."
-      again
-    elsif <= 25
-      puts "Rent A Primative Human Vehichle"
-      again
-    else < 25
-      puts "Your Worthless Human Body Shrivels And Dies! HAHAHA!"
-      again
-    end
-  end
+  can_do =[]
 
+  can_do << "You Do Noting! Usless Human!!" if @age <= 18
+  can_do << "Go Vote!..Your Vote Matter Not!" if @age >= 18
+  can_do << "Go Smoke! You Vile Creature!" if @age >= 18
+  can_do << "You May Consume Alcohol.." if @age >= 21
+  can_do << "Rent A Primative Human Vehichle" if @age >= 25
+  can_do << "Your Worthless Human Body Shrivels And Dies! HAHAHA!" if @age >= 25
+
+  can_do.each do |activity|
+    puts "#{activity}"
+  end
+  again
+end
 
 def again
-  puts "Meet Ruby The Bouncer Again?"
-  @again = gets.chomp
-  if @agian == n
+  puts "================================"
+  puts "Meet Ruby The Bouncer Again? y/n"
+  @again = gets.chomp.downcase
+  if @again == "n"
     puts "GoodBye Human!"
-  else  get_human_input
+  else  get_human_age
   end
 end
+
+start
